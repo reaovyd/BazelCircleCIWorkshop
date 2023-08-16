@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "Project1_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/reaovyd/BazelWorkshop/srcs/Project1",
+    visibility = ["//visibility:private"],
+    deps = ["@com_github_sirupsen_logrus//:logrus"],
+)
+
+go_binary(
+    name = "Project1",
+    embed = [":Project1_lib"],
+    visibility = ["//visibility:public"],
+)
