@@ -30,7 +30,7 @@ workflows:
       - deploy:
           requires:
             - build
-        filters:
-          branches:
-            only:
-              - mainline
+          filters:
+            branches:
+              only:
+                - mainline
