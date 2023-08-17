@@ -5,6 +5,7 @@ jobs:
     docker:
       - image: cimg/base:2023.08 
     steps:
+      - checkout
       - run:
           name: Add Bazel Apt Repository 
           command: |
@@ -15,6 +16,14 @@ jobs:
       - run:
           name: Install Bazel
           command: sudo apt update && sudo apt install -y bazel
+      - run: 
+          name: Build Packages
+          command: |
+            bazel build //...
+            bazel run //:gazelle-update-repos
+            bazel run //:gazelle
+
+
 
 
   deploy:
