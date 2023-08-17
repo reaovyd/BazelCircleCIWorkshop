@@ -3,18 +3,18 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: alpine:3.14 
+      - image: cimg/base:2023.08 
     steps:
       - run:
           name: Add Bazel Apt Repository 
           command: |
-            apt install curl gnupg -y &&
+            sudo apt install curl gnupg -y &&
             curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg &&
-            mv bazel.gpg /etc/apt/trusted.gpg.d/ &&
+            sudo mv bazel.gpg /etc/apt/trusted.gpg.d/ &&
             echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
       - run:
           name: Install Bazel
-          command: apt update && apt install -y bazel git python3 python3-pip python-pip 
+          command: sudo apt update && sudo apt install -y bazel git python3 python3-pip python-pip 
 
 
   deploy:
