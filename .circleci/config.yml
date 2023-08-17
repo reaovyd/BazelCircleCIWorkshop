@@ -9,9 +9,9 @@ jobs:
       - run:
           name: Add Bazel Apt Repository 
           command: |
-            sudo apt install curl gnupg -y
-            curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg
-            sudo mv bazel.gpg /etc/apt/trusted.gpg.d/
+            sudo apt install curl gnupg -y &&
+            curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg &&
+            sudo mv bazel.gpg /etc/apt/trusted.gpg.d/ &&
             echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
       - run:
           name: Install Bazel
@@ -19,8 +19,8 @@ jobs:
       - run: 
           name: Build Packages
           command: |
-            bazel build //...
-            bazel run //:gazelle-update-repos
+            bazel build //... &&
+            bazel run //:gazelle-update-repos &&
             bazel run //:gazelle
 
 
