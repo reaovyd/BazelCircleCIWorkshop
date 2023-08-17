@@ -44,9 +44,12 @@ workflows:
   BazelCircleCIWorkshopPipeline:
     jobs:
       - build
+      - test:
+        requires:
+          - build
       - deploy:
           requires:
-            - build
+            - test 
           filters:
             branches:
               only:
