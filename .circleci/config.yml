@@ -19,7 +19,7 @@ jobs:
       - run: 
           name: Build Packages
           command: |
-            where bazel &&
+            which bazel &&
             bazel build //... &&
             bazel run //:gazelle-update-repos &&
             bazel run //:gazelle
