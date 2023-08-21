@@ -22,7 +22,7 @@ jobs:
             bazel build //... &&
             bazel run //:gazelle-update-repos &&
             bazel run //:gazelle
-      artifacts:
+      - artifacts:
         - /bin/bazel
         - ./
   test: 
