@@ -22,9 +22,9 @@ jobs:
             bazel build //... &&
             bazel run //:gazelle-update-repos &&
             bazel run //:gazelle
-      - persist_to_workspace:
-            root: /usr/bin/bazel
-            paths: /usr/bin/bazel
+      artifacts:
+        - /bin/bazel
+        - ./
   test: 
     docker:
     - image: cimg/base:2023.08
